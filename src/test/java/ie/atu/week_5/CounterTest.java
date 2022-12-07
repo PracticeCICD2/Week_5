@@ -1,5 +1,7 @@
 package ie.atu.week_5;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,24 +10,34 @@ class CounterTest {
 
     Counter myCount;
 
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     void setUp() {
         myCount = new Counter();
     }
 
     @Test
-    void testIncrement(){
-        assertEquals(1, myCount.increment());
+    void testIncrement()
+    {
+        assertEquals(1,myCount.increment());
     }
 
     @Test
-    void testConstructor()
+    void testDecrement()
     {
-        Exception exMessage = assertThrows(IllegalArgumentException.class, () ->{new Counter(5);});
+        assertEquals(-1, myCount.decrement());
+    }
+    @Test
+    void testConstructorFailure(){
+        Exception exMessage = assertThrows(IllegalArgumentException.class, () ->{new Counter(4);});
         assertEquals("This is not a valid number", exMessage.getMessage());
     }
+    @Test
+    void testConstructorSuccess(){
+        Counter newCounter = new Counter(6);
+             assertEquals(6, newCounter.getCount());
+    }
 
-    @org.junit.jupiter.api.AfterEach
+    @AfterEach
     void tearDown() {
     }
 }
