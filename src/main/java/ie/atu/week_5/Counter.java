@@ -17,6 +17,8 @@ public class Counter {
             return countValue;
         }
 
+        //incremetn method
+
 
     public int increment(){
         countValue++;
